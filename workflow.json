@@ -1,0 +1,1070 @@
+{
+  "name": "Finance Tracker - Main Router",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        464
+      ],
+      "id": "518d467c-4cba-482c-9c8b-0f2640878873",
+      "name": "Telegram Trigger",
+      "webhookId": "9ed61433-e661-4210-b6a3-b3231efb3801",
+      "credentials": {
+        "telegramApi": {
+          "id": "bNBBFbTSTqSv8FhF",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "119a2a91-f840-4852-8956-f1006bb3369e",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/budget",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "budget"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/start",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "bdefc375-7e5c-492a-9b75-db9e708179c5"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "start"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "37d513a7-3c28-495a-832d-1f80cb33f4bc",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/balance",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "balance"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "b2d96ccc-8934-49ad-b578-7433ddbf18e8",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/history",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "history"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "64246ea8-2ba0-4edf-8691-c0d3c4baf2ad",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/stats",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "stats"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "bf09bf4f-366e-4f8b-affa-d97346c9af99",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/mybudgets",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "mybudgets"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "2c2421b2-e1ac-4820-b21c-1b48326d4e76",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/delete",
+                    "operator": {
+                      "type": "string",
+                      "operation": "startsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "delete"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "205c35b8-37c4-45a6-bbb6-180c4a6e75fc",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "/start",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEquals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "ai_parse"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        224,
+        368
+      ],
+      "id": "d9445188-1e01-48ac-9b6b-287dbabcf120",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "=👋 Hello, {{ $('Telegram Trigger').item.json.message.from.first_name }}!\n\n🤖 I'm *AI Finance Tracker* — your personal finance assistant powered by AI.\n\n📝 *Just tell me naturally:*\n- \"Spent 3500 on food\"\n- \"Got salary 200000\"\n- \"Paid 1200 for transport\"\n\n📊 *Commands:*\n/balance — current balance\n/history — last 10 transactions\n/history food — filter by category\n/history this week — filter by week\n/stats — spending analytics + AI insights\n/budget food 20000 — set budget limit\n/mybudgets — view all budgets\n/delete — delete last transaction\n\n💡 *Tips:*\n- I understand natural language in English\n- Budgets alert you at 80% usage\n- Weekly reports every Sunday\n\nLet's track your finances! 💰",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        672,
+        -208
+      ],
+      "id": "cf9851eb-7c55-4688-81ba-68d0fada75f6",
+      "name": "Send a text message",
+      "webhookId": "b522783d-c9b1-40f3-9250-d4b372e79253",
+      "credentials": {
+        "telegramApi": {
+          "id": "bNBBFbTSTqSv8FhF",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.groq.com/openai/v1/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer YOUR_GROQ_API_KEY"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"llama-3.3-70b-versatile\",\n  \"temperature\": 0,\n  \"max_tokens\": 300,\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a financial data extraction agent. Extract from user message: amount (number), type (expense or income), category (food/transport/housing/health/education/entertainment/shopping/utilities/salary/other), date (YYYY-MM-DD, default today={{ $now.toFormat('yyyy-MM-dd') }}), note. Respond ONLY with valid JSON: {\\\"amount\\\":number,\\\"type\\\":\\\"expense\\\",\\\"category\\\":\\\"food\\\",\\\"date\\\":\\\"2025-01-01\\\",\\\"note\\\":\\\"\\\"}\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"={{ $('Telegram Trigger').item.json.message.text }}\"\n    }\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        672,
+        560
+      ],
+      "id": "60e6a3bf-6967-4a4e-888c-b144db51313e",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $input.first().json.choices[0].message.content;\n\nlet parsed;\ntry {\n  const clean = raw.replace(/```json|```/g, '').trim();\n  parsed = JSON.parse(clean);\n} catch(e) {\n  parsed = {\n    amount: null,\n    type: 'expense',\n    category: 'other',\n    date: new Date().toISOString().split('T')[0],\n    note: raw\n  };\n}\n\nreturn [{\n  json: {\n    amount: parsed.amount,\n    type: parsed.type || 'expense',\n    category: parsed.category || 'other',\n    date: parsed.date || new Date().toISOString().split('T')[0],\n    note: parsed.note || '',\n    chatId: $('Telegram Trigger').first().json.message.chat.id,\n    needsClarification: !parsed.amount\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        896,
+        560
+      ],
+      "id": "5c2f887b-33fb-4a9a-9687-2dddde186b63",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO transactions (user_id, category_id, type, amount, note, transaction_date, raw_input)\nSELECT u.id, c.id, '{{ $json.type }}', {{ $json.amount }}, '{{$json.note}}', '{{ $json.date }}', '{{ $('Telegram Trigger').item.json.message.text }}'\nFROM users u\nLEFT JOIN categories c ON LOWER(c.name) = LOWER('{{ $json.category }}')\n  AND (c.user_id = u.id OR c.user_id IS NULL)\nWHERE u.chat_id = {{ $json.chatId }}\nRETURNING id;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1120,
+        560
+      ],
+      "id": "1fee8e9c-e86e-4a80-b807-b8d7fed73652",
+      "name": "Execute a SQL query",
+      "credentials": {
+        "postgres": {
+          "id": "4oGRssJgVw12No2i",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Code in JavaScript').item.json.chatId }}",
+        "text": "=✅ Recorded!\n\n📉 Expense: {{ $('Code in JavaScript').item.json.amount }} KZT\n🏷 Category: {{ $('Code in JavaScript').item.json.category }}\n📅 Date: {{ $('Code in JavaScript').item.json.date }}\n\nCheck balance: /balance",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1344,
+        560
+      ],
+      "id": "7dffd97b-0e42-44d9-b4bb-dcb485674f54",
+      "name": "Send a text message1",
+      "webhookId": "69d70a34-622e-4733-ad0f-575b0785e38a",
+      "credentials": {
+        "telegramApi": {
+          "id": "bNBBFbTSTqSv8FhF",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT \n  COALESCE(SUM(CASE WHEN type='income' THEN amount END), 0) AS total_income,\n  COALESCE(SUM(CASE WHEN type='expense' THEN amount END), 0) AS total_expense,\n  COALESCE(SUM(CASE WHEN type='income' THEN amount END), 0) - \n  COALESCE(SUM(CASE WHEN type='expense' THEN amount END), 0) AS balance\nFROM transactions\nWHERE user_id = (SELECT id FROM users WHERE chat_id = {{ $json.message.chat.id }})\n  AND transaction_date >= DATE_TRUNC('month', CURRENT_DATE);",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        448,
+        -16
+      ],
+      "id": "2ddf2f16-049f-4742-bee2-6d168111ff58",
+      "name": "Execute a SQL query1",
+      "credentials": {
+        "postgres": {
+          "id": "4oGRssJgVw12No2i",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "=💼 *Your Balance — {{ $now.toFormat('MMMM yyyy') }}*\n\n📥 Income:   {{ $json.total_income }} KZT\n📤 Expenses: {{ $json.total_expense }} KZT\n─────────────────────\n{{ $json.balance >= 0 ? '🟢' : '🔴' }} Net: {{ $json.balance }} KZT\n\n📊 Detailed stats: /stats\n📋 History: /history",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        672,
+        -16
+      ],
+      "id": "cc8b5a59-7bc7-4431-a5f8-d9c330843203",
+      "name": "Send a text message2",
+      "webhookId": "ff984874-6650-4fce-944f-ed8bd2a500be",
+      "credentials": {
+        "telegramApi": {
+          "id": "bNBBFbTSTqSv8FhF",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT t.id, t.type, t.amount, t.note, t.transaction_date,\n       COALESCE(c.name, 'other') AS category\nFROM transactions t\nLEFT JOIN categories c ON c.id = t.category_id\nWHERE t.user_id = (SELECT id FROM users WHERE chat_id = {{ $('Parse History Filter').first().json.chatId }})\nORDER BY t.transaction_date DESC, t.created_at DESC\nLIMIT 50;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        672,
+        368
+      ],
+      "id": "23d74140-5929-41dd-aa68-0d99bc2b1fee",
+      "name": "Execute a SQL query2",
+      "credentials": {
+        "postgres": {
+          "id": "4oGRssJgVw12No2i",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const allTransactions = $input.all();\nconst chatId = $('Parse History Filter').first().json.chatId;\nconst categoryFilter = $('Parse History Filter').first().json.categoryFilter;\nconst dateFilter = $('Parse History Filter').first().json.dateFilter;\n\nlet transactions = allTransactions;\n\nif (categoryFilter) {\n  transactions = transactions.filter(t => \n    (t.json.category || 'other').toLowerCase() === categoryFilter.toLowerCase()\n  );\n}\n\nif (dateFilter === 'week') {\n  const weekAgo = new Date();\n  weekAgo.setDate(weekAgo.getDate() - 7);\n  transactions = transactions.filter(t => \n    new Date(t.json.transaction_date) >= weekAgo\n  );\n}\n\ntransactions = transactions.slice(0, 10);\n\nlet title = '📋 *Recent Transactions';\nif (categoryFilter) title += ` — ${categoryFilter}`;\nif (dateFilter === 'week') title += ' — this week';\ntitle += ':*\\n\\n';\n\nif (transactions.length === 0) {\n  return [{ json: { text: '📋 No transactions found.', chatId } }];\n}\n\nlet msg = title;\ntransactions.forEach(t => {\n  const emoji = t.json.type === 'income' ? '📈' : '📉';\n  const sign = t.json.type === 'income' ? '+' : '-';\n  const date = t.json.transaction_date.split('T')[0];\n  const cat = t.json.category || 'other';\n  msg += `${emoji} ${sign}${t.json.amount} KZT | ${cat} | ${date}\\n`;\n});\nmsg += '\\n💰 Balance: /balance';\n\nreturn [{ json: { text: msg, chatId } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        896,
+        368
+      ],
+      "id": "0d8e8837-7e5b-4bbe-bfc0-85e9c325e277",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1120,
+        368
+      ],
+      "id": "9a78731e-2893-43ef-b307-c7708f73a296",
+      "name": "Send a text message3",
+      "webhookId": "85a80c14-40f8-4bf8-a52a-9df3fab10c35",
+      "credentials": {
+        "telegramApi": {
+          "id": "bNBBFbTSTqSv8FhF",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT c.name AS category, \n       SUM(t.amount) AS total,\n       ROUND(100.0 * SUM(t.amount) / SUM(SUM(t.amount)) OVER(), 1) AS pct\nFROM transactions t\nLEFT JOIN categories c ON c.id = t.category_id\nWHERE t.user_id = (SELECT id FROM users WHERE chat_id = {{ $json.message.chat.id }})\n  AND t.type = 'expense'\n  AND t.transaction_date >= DATE_TRUNC('month', CURRENT_DATE)\nGROUP BY c.name\nORDER BY total DESC;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        448,
+        944
+      ],
+      "id": "b3fa4565-d522-4f0d-9e62-8c99215927b5",
+      "name": "Execute a SQL query3",
+      "credentials": {
+        "postgres": {
+          "id": "4oGRssJgVw12No2i",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const rows = $input.all();\nconst chatId = $('Telegram Trigger').first().json.message.chat.id;\n\nif (rows.length === 0) {\n  return [{ json: { text: '📊 Нет данных за этот месяц.', chatId } }];\n}\n\nconst emojis = {\n  food: '🍕', transport: '🚗', housing: '🏠',\n  health: '💊', education: '📚', entertainment: '🎮',\n  shopping: '🛍️', utilities: '⚡', salary: '💼',\n  freelance: '💻', other: '💳'\n};\n\nlet totalAll = 0;\nrows.forEach(r => { totalAll += parseFloat(r.json.total); });\n\nlet statsText = '';\nlet statsForAI = [];\n\nrows.forEach(r => {\n  const cat = r.json.category || 'other';\n  const emoji = emojis[cat] || '💳';\n  const amount = parseFloat(r.json.total).toFixed(0);\n  const pct = r.json.pct;\n  const bars = Math.round(pct / 10);\n  const bar = '█'.repeat(bars) + '░'.repeat(10 - bars);\n  statsText += `${emoji} ${cat}\\n${bar} ${pct}%\\n💰 ${amount} KZT\\n\\n`;\n  statsForAI.push({ category: cat, amount: parseFloat(amount), percent: pct });\n});\n\nreturn [{\n  json: {\n    chatId,\n    statsText,\n    totalAll: totalAll.toFixed(0),\n    statsForAI: JSON.stringify(statsForAI)\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        672,
+        944
+      ],
+      "id": "cbfcae9e-cddb-4748-b7f2-304b79c12b14",
+      "name": "Code in JavaScript2"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Code in JavaScript2').first().json.chatId }}",
+        "text": "={{ $('Code in JavaScript5').first().json.text }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1344,
+        944
+      ],
+      "id": "822a27c9-66ba-477e-94a7-65080ad25ce8",
+      "name": "Send a text message4",
+      "webhookId": "058933bb-ea39-44ab-9149-dcd459a06a91",
+      "credentials": {
+        "telegramApi": {
+          "id": "bNBBFbTSTqSv8FhF",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.groq.com/openai/v1/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer YOUR_GROQ_API_KEY"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"model\": \"llama-3.3-70b-versatile\",\n  \"temperature\": 0.7,\n  \"max_tokens\": 200,\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"You are a financial advisor. Give 2-3 specific tips based on spending data. Write in English. Be specific with numbers. Maximum 3 sentences.\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"Мои расходы за месяц: other 49200 KZT. Дай советы.\"\n    }\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        896,
+        944
+      ],
+      "id": "0da4d237-0021-4e77-93b1-68a4a214e048",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const aiResponse = $input.first().json.choices[0].message.content;\nconst statsText = $('Code in JavaScript2').first().json.statsText;\nconst totalAll = $('Code in JavaScript2').first().json.totalAll;\nconst chatId = $('Code in JavaScript2').first().json.chatId;\n\nconst msg = `📊 *Статистика расходов — этот месяц:*\n\n${statsText}\n📤 Итого расходов: ${totalAll} KZT\n💼 Баланс: /balance\n\n🤖 *AI Инсайты:*\n${aiResponse}`;\n\nreturn [{ json: { text: msg, chatId } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        944
+      ],
+      "id": "cd823642-f475-469d-add7-622fef2bf85c",
+      "name": "Code in JavaScript5"
+    },
+    {
+      "parameters": {
+        "jsCode": "const text = $('Telegram Trigger').first().json.message.text;\nconst chatId = $('Telegram Trigger').first().json.message.chat.id;\n\n// Убираем /budget и разбиваем остаток\nconst withoutCommand = text.replace('/budget', '').trim();\nconst parts = withoutCommand.split(' ');\n\nif (parts.length < 2) {\n  return [{ json: { \n    chatId, \n    error: true, \n    amount: 0, \n    category: '', \n    text: '⚠️ Format: /budget [category] [amount]\\n\\nExample: /budget food 20000' \n  }}];\n}\n\nconst category = parts[0].toLowerCase();\nconst amount = parseFloat(parts[1]);\n\nif (isNaN(amount) || amount <= 0) {\n  return [{ json: { \n    chatId, \n    error: true, \n    amount: 0, \n    category: '',\n    text: '⚠️ Amount must be a number. Example: /budget food 20000'\n  }}];\n}\n\nreturn [{ json: { chatId, category, amount, error: false } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        176
+      ],
+      "id": "c80f1228-19b5-449a-959d-f8d8e3739b0d",
+      "name": "Code in JavaScript3"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO budgets (user_id, category_id, period, limit_amount, alert_at_pct)\nSELECT \n  u.id,\n  c.id,\n  'monthly',\n  {{ $('Code in JavaScript3').item.json.amount }},\n  80\nFROM users u, categories c\nWHERE u.chat_id = {{ $('Code in JavaScript3').item.json.chatId }}\n  AND LOWER(c.name) = LOWER('{{ $('Code in JavaScript3').item.json.category }}')\nON CONFLICT (user_id, category_id, period) DO UPDATE \n  SET limit_amount = EXCLUDED.limit_amount\nRETURNING id;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        672,
+        176
+      ],
+      "id": "9c35c0ea-44c5-4cbf-8b52-4cd198d14b0f",
+      "name": "Execute a SQL query4",
+      "credentials": {
+        "postgres": {
+          "id": "4oGRssJgVw12No2i",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Code in JavaScript3').first().json.chatId }}",
+        "text": "=✅ Budget Set!  🏷 Category: {{ $('Code in JavaScript3').item.json.category }} 💰 Limit: {{ $('Code in JavaScript3').item.json.amount }} KZT/month ⚠️ I'll alert you when you reach 80% of the limit  View statistics: /stats",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        896,
+        176
+      ],
+      "id": "d2d64694-e8cd-4c81-b6b9-a6134c12b025",
+      "name": "Send a text message5",
+      "webhookId": "a53b205a-982f-4f45-87ea-60775d33a77d",
+      "credentials": {
+        "telegramApi": {
+          "id": "bNBBFbTSTqSv8FhF",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT b.limit_amount, b.period,\n       COALESCE(c.name, 'all categories') AS category,\n       COALESCE(c.emoji, '💰') AS emoji\nFROM budgets b\nLEFT JOIN categories c ON c.id = b.category_id\nWHERE b.user_id = (SELECT id FROM users WHERE chat_id = {{ $json.message.chat.id }})\n  AND b.is_active = TRUE\nORDER BY b.created_at DESC;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        448,
+        752
+      ],
+      "id": "48817a81-e919-4bfc-87db-7631b5f8043f",
+      "name": "Execute a SQL query5",
+      "credentials": {
+        "postgres": {
+          "id": "4oGRssJgVw12No2i",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst chatId = $('Switch').item.json.message.chat.id;\n\nif (!items || items.length === 0) {\n  return [{ json: { chatId, text: \"📭 You have no budgets set.\\n\\nUse: /budget <category> <amount>\\nExample: /budget food 20000\" } }];\n}\n\nlet text = \"📊 *Your Budgets:*\\n\\n\";\n\nfor (const item of items) {\n  const row = item.json;\n  const category = row.category || \"all categories\";\n  const emoji = row.emoji || \"💰\";\n  const limit = Number(row.limit_amount).toLocaleString();\n  const pct = 0;\n  const bar = \"░\".repeat(10);\n  \n  text += `${emoji} *${category}*\\n`;\n  text += `${bar} ${pct}%\\n`;\n  text += `Limit: ${limit} KZT/month\\n\\n`;\n}\n\ntext += \"_Use /budget <category> <amount> to update_\";\n\nreturn [{ json: { chatId, text } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        672,
+        752
+      ],
+      "id": "94c95014-9371-434b-8b9f-f1836615ed35",
+      "name": "Code in JavaScript6"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        896,
+        752
+      ],
+      "id": "9007e733-40ad-4764-8cf1-75f7db5e19c6",
+      "name": "Send a text message7",
+      "webhookId": "4b73bbef-4a1d-4936-860e-b28aca9ece29",
+      "credentials": {
+        "telegramApi": {
+          "id": "bNBBFbTSTqSv8FhF",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "DELETE FROM transactions\nWHERE id = (\n  SELECT id FROM transactions\n  WHERE user_id = (SELECT id FROM users WHERE chat_id = {{ $json.message.chat.id }})\n  ORDER BY created_at DESC\n  LIMIT 1\n)\nRETURNING amount, note, type, transaction_date;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        448,
+        1136
+      ],
+      "id": "385766f1-dea4-4907-83bb-b137807afcfb",
+      "name": "Execute a SQL query6",
+      "credentials": {
+        "postgres": {
+          "id": "4oGRssJgVw12No2i",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const row = $input.first().json;\nconst chatId = $('Switch').item.json.message.chat.id;\n\nif (!row || !row.amount) {\n  return [{ json: { chatId, text: \"❌ No transactions to delete.\" } }];\n}\n\nconst note = row.note || 'transaction';\nconst type = row.type === 'income' ? '📈' : '📉';\n\nreturn [{\n  json: {\n    chatId,\n    text: `🗑 Deleted: ${type} *${note}* — ${Number(row.amount).toLocaleString()} KZT\\n_${row.transaction_date}_`\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        672,
+        1136
+      ],
+      "id": "f5d2d6ae-4d24-40e2-8c04-9a3763f9b83d",
+      "name": "Code in JavaScript7"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        896,
+        1136
+      ],
+      "id": "fa8ff38c-f7d6-48d7-9aa5-b4e4b3e6d104",
+      "name": "Send a text message8",
+      "webhookId": "f45d508b-d035-4036-b193-9c86da3919be",
+      "credentials": {
+        "telegramApi": {
+          "id": "bNBBFbTSTqSv8FhF",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const text = $input.first().json.message.text;\nconst chatId = $input.first().json.message.chat.id;\nconst parts = text.trim().split(/\\s+/);\n\nlet categoryFilter = null;\nlet dateFilter = null;\n\nif (parts.length > 1) {\n  const arg = parts.slice(1).join(' ').toLowerCase();\n  if (arg === 'this week') {\n    dateFilter = 'week';\n  } else {\n    categoryFilter = arg;\n  }\n}\n\nreturn [{ json: { chatId, categoryFilter, dateFilter } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        368
+      ],
+      "id": "102d2b0f-38f5-4775-99c4-a05e6c38ad95",
+      "name": "Parse History Filter"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO users (chat_id, username, first_name)\nVALUES (\n  {{ $json.message.chat.id }},\n  '{{ $json.message.from.username }}',\n  '{{ $json.message.from.first_name }}'\n)\nON CONFLICT (chat_id) DO UPDATE \n  SET first_name = EXCLUDED.first_name,\n      username = EXCLUDED.username;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        448,
+        -208
+      ],
+      "id": "999db12e-20a2-4cb0-94ac-fe3c00146f12",
+      "name": "Execute a SQL query7",
+      "credentials": {
+        "postgres": {
+          "id": "4oGRssJgVw12No2i",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO users (chat_id, username, first_name)\nVALUES (\n  {{ $json.message.chat.id }},\n  '{{ $json.message.from.username }}',\n  '{{ $json.message.from.first_name }}'\n)\nON CONFLICT (chat_id) DO UPDATE \n  SET first_name = EXCLUDED.first_name,\n      username = EXCLUDED.username;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        448,
+        560
+      ],
+      "id": "e4ff889f-73da-40e3-8f54-ea9a0cb15c61",
+      "name": "Execute a SQL query8",
+      "credentials": {
+        "postgres": {
+          "id": "4oGRssJgVw12No2i",
+          "name": "Postgres account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Execute a SQL query7",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Execute a SQL query1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Parse History Filter",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Execute a SQL query3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Execute a SQL query5",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Execute a SQL query6",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Execute a SQL query8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Execute a SQL query",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute a SQL query": {
+      "main": [
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute a SQL query1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a text message2": {
+      "main": [
+        []
+      ]
+    },
+    "Execute a SQL query2": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute a SQL query3": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript5": {
+      "main": [
+        [
+          {
+            "node": "Send a text message4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript3": {
+      "main": [
+        [
+          {
+            "node": "Execute a SQL query4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute a SQL query4": {
+      "main": [
+        [
+          {
+            "node": "Send a text message5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute a SQL query5": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript6": {
+      "main": [
+        [
+          {
+            "node": "Send a text message7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute a SQL query6": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript7": {
+      "main": [
+        [
+          {
+            "node": "Send a text message8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse History Filter": {
+      "main": [
+        [
+          {
+            "node": "Execute a SQL query2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute a SQL query7": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute a SQL query8": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "200956b2-283a-424a-8468-2006d0ab9a98",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "bb30a98ab8bfcfc47b480d8cc877b76bc8394391ae9b39e3afcf6ce1d11bcd48"
+  },
+  "id": "ae9DzPNbAiaXrggp",
+  "tags": []
+}
